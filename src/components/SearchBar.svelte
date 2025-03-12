@@ -13,7 +13,7 @@
 <div class="search-container">
     <input
         type="text"
-        placeholder="Search Pokémon by name"
+        placeholder="Charizard"
         bind:value={searchInput}
         on:input={(e) => updateSearch(e.target.value)}
     />
@@ -36,6 +36,8 @@
         border-radius: 6px;
         font-size: 1rem;
         transition: border-color 0.3s ease;
+        background-color: var(--primary-background);
+        color: white;
     }
 
     input:focus {

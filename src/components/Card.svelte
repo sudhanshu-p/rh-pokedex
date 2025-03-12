@@ -46,7 +46,8 @@
 
 <style>
     .card {
-        background-color: white;
+        background-color: var(--secondary-background);
+        color: var(--secondary-text);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         overflow: hidden;
@@ -54,6 +55,8 @@
             transform 0.3s ease,
             box-shadow 0.3s ease;
         cursor: pointer;
+
+        border: 1px solid var(--secondary-text);
     }
 
     .card:hover {
@@ -113,7 +116,7 @@
         border: none;
         cursor: pointer;
         transition: opacity 0.3s ease;
-        width: 4rem;
-        height: 4rem;
+        width: 3rem;
+        height: 3rem;
     }
 </style>

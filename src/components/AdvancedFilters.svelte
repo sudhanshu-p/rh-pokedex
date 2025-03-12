@@ -12,7 +12,7 @@
 <div class="advanced-filters">
     <button class="toggle-button" on:click={toggleFilters}>
         {isOpen ? "Hide Advanced Filters" : "Show Advanced Filters"}
-        <span class="icon">{isOpen ? "▲" : "▼"}</span>
+        <span class="up-down-icon">{isOpen ? "▲" : "▼"}</span>
     </button>
 
     {#if isOpen}
@@ -45,11 +45,12 @@
         align-items: center;
     }
 
-    .icon {
+    .up-down-icon {
         font-size: 0.8rem;
     }
 
     .filters-content {
+        background-color: var(--secondary-background);
         padding: 1rem;
     }
 </style>

@@ -16,7 +16,10 @@ body {
 /* Variables */
 :root {
    --primary-text: #e3350d;
+   --secondary-text: #C792EA;
    --primary-background: #212737;
+   --secondary-background: #011627;
+   --border: #ab4b08;
 }
 
 /* Typography */

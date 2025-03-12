@@ -108,7 +108,7 @@
 
 <div
     class="radar-container"
-    style="width: {size+100}px; height: {size}px; position: relative;"
+    style="width: {size}px; height: {size}px; position: relative;"
 >
     <svg width={size*1.3} height={size}>
         <!-- Grid circles and axis lines -->

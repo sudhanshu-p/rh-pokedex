@@ -84,11 +84,12 @@
 <style>
     .type-chips-container {
         margin-top: 1rem;
+        color: var(--secondary-text);
     }
 
     h3 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
         font-size: 1rem;
     }
 

@@ -54,7 +54,7 @@
     }
 
     async function loadMore() {
-        if ($filters.searchTerm || $filters.selectedTypes) {
+        if ($filters.searchTerm || $filters.selectedTypes.length) {
             const newPokemon = await searchPokemon(
                 {
                     name: $filters.searchTerm,

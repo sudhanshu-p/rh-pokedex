@@ -10,7 +10,6 @@ import AdvancedFilters from "../components/AdvancedFilters.svelte";
 <MainLayout title="Pokédex">
 	<header>
 		<h1>Responsive and Reactive Pokédex</h1>
-		<p>Salient Features - Low</p>
 	</header>
 	<div class="app-container">
 		<!-- Desktop: Search panel on the left -->
@@ -54,9 +53,11 @@ import AdvancedFilters from "../components/AdvancedFilters.svelte";
 		top: 10%;
 		left: 0;
 		height: fit-content;
-		width: 250px;
-		background: white;
-		padding: 1rem;
+		width: 300px;
+		background: var(--secondary-background);
+		color: var(--secondary-color);
+		border: 5px solid var(--border);
+		padding: 2rem;
 		border-radius: 8px;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
