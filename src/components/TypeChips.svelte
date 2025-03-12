@@ -11,22 +11,22 @@
     let isLoading = true;
 
     function delay() {
-        return new Promise(resolve => setTimeout(resolve, 1000))
+        return new Promise((resolve) => setTimeout(resolve, 1000));
     }
     async function getTypesForSure() {
-        const response = getAllTypes()
+        const response = getAllTypes();
 
-        if(response.error) {
+        if (response.error) {
             // Wait
-            await delay()
-            return getTypesForSure()
+            await delay();
+            return getTypesForSure();
         }
-        return response.data
+        return response.data;
     }
 
     onMount(async () => {
         try {
-            types = await getTypesForSure()
+            types = await getTypesForSure();
             isLoading = false;
         } catch (error) {
             console.error("Failed to load types:", error);
@@ -59,13 +59,16 @@
     {:else}
         <div class="type-chips">
             {#each types as type}
+                <!-- svelte-ignore a11y_consider_explicit_label -->
                 <button
-                    class="type-chip"
+                    class="type-chip icon {type.toLowerCase()}"
                     class:selected={selectedTypes.includes(type)}
-                    style="background-color: rgb({getTypeColor(type)});"
                     on:click={() => toggleType(type)}
                 >
-                    {type}
+                    <img
+                        src="/{type.toLowerCase()}.svg"
+                        alt={type.toLowerCase()}
+                    />
                 </button>
             {/each}
         </div>
@@ -97,15 +100,11 @@
     }
 
     .type-chip {
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        color: white;
-        text-transform: capitalize;
         border: none;
         cursor: pointer;
-        opacity: 0.6;
         transition: opacity 0.3s ease;
+        width: 4rem;
+        height: 4rem;
     }
 
     .type-chip.selected {

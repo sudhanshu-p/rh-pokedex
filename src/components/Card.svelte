@@ -14,9 +14,7 @@
         return `#${id.toString().padStart(3, "0")}`;
     }
 
-    onMount(async () => {
-        
-    });
+    onMount(async () => {});
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -35,12 +33,12 @@
         </h2>
         <div class="pokemon-types">
             {#each pokemon.type as type}
-                <span
-                    class="type-badge"
-                    style="background-color: rgb({getTypeColor(type)})"
-                >
-                    {type}
-                </span>
+                <div class="type-chip icon {type.toLowerCase()}">
+                    <img
+                        src="/{type.toLowerCase()}.svg"
+                        alt={type.toLowerCase()}
+                    />
+                </div>
             {/each}
         </div>
     </div>
@@ -109,5 +107,13 @@
         font-size: 0.8rem;
         color: white;
         text-transform: capitalize;
+    }
+    
+    .type-chip {
+        border: none;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        width: 4rem;
+        height: 4rem;
     }
 </style>

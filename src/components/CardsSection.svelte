@@ -21,7 +21,7 @@
     // Constants
     let LIMIT = 20;
     const NEXT = 20;
-    let currentPokemon = 20
+    let currentPokemon = 20;
 
     // Initial data fetch
     onMount(async () => {
@@ -54,9 +54,22 @@
     }
 
     async function loadMore() {
-        const newPokemon = await loadMorePokemon(LIMIT, currentPokemon)
-        filteredPokemon = filteredPokemon.concat(newPokemon)
-        currentPokemon += LIMIT
+        if ($filters.searchTerm || $filters.selectedTypes) {
+            const newPokemon = await searchPokemon(
+                {
+                    name: $filters.searchTerm,
+                    types: $filters.selectedTypes,
+                },
+                LIMIT,
+                currentPokemon,
+            );
+            filteredPokemon = filteredPokemon.concat(newPokemon);
+            currentPokemon += LIMIT;
+        } else {
+            const newPokemon = await loadMorePokemon(LIMIT, currentPokemon);
+            filteredPokemon = filteredPokemon.concat(newPokemon);
+            currentPokemon += LIMIT;
+        }
     }
 
     // Subscribes so that everytime $filters changes, filterPokemon is run.
@@ -84,10 +97,14 @@
             </div>
         {/each}
     </div>
-    <div class="load-more">
-        <button on:click={loadMore} 
+    <!-- <button on:click={loadMore} 
             >Load More</button
-        >
+        > -->
+    <div class="container">
+        <button class="button" on:click={loadMore}>
+            <span class="button-background"></span>
+            <span class="button-text">Load More</span>
+        </button>
     </div>
 {/if}
 
@@ -105,8 +122,7 @@
 
     .loading,
     .error,
-    .no-results,
-    .load-more {
+    .no-results {
         text-align: center;
         padding: 2rem;
         background: white;
@@ -125,5 +141,56 @@
         padding: 0.5rem 1rem;
         border-radius: 4px;
         cursor: pointer;
+    }
+
+    /* Button styling */
+
+    .container {
+        width: 100%;
+        height: 10rem; /* h-40 = 10rem */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button {
+        position: relative;
+        display: inline-block;
+        padding: 0.5rem 0.875rem;
+        margin: 0.25rem;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid var(--primary-text);
+        color: var(--primary-text);
+        border-radius: 0.375rem;
+        text-decoration: none;
+        background: transparent;
+    }
+
+    .button-background {
+        position: absolute;
+        width: 16rem;
+        height: 0;
+        background-color: var(--primary-text);
+        top: 50%;
+        left: 50%;
+        transform: translate(-5rem, 0) rotate(45deg);
+        transform-origin: center;
+        transition: all 0.3s ease;
+    }
+
+    .button-text {
+        position: relative;
+        color: var(--primary-text);
+        transition: color 0.3s ease;
+    }
+
+    .button:hover .button-background {
+        height: 16rem; /* h-64 = 16rem */
+        transform: translate(-5rem, -8rem) rotate(45deg);
+    }
+
+    .button:hover .button-text {
+        color: white;
     }
 </style>

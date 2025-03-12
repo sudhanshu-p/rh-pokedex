@@ -6,14 +6,14 @@
     const updateSearch = (value) => {
         // filters.update((f) => ({ ...f, searchTerm: value }));
         $filters = { ...$filters, searchTerm: value };
-        searchInput = value
+        searchInput = value;
     };
 </script>
 
 <div class="search-container">
     <input
         type="text"
-        placeholder="Search Pokémon by name or ID..."
+        placeholder="Search Pokémon by name"
         bind:value={searchInput}
         on:input={(e) => updateSearch(e.target.value)}
     />

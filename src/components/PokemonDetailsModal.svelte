@@ -2,6 +2,8 @@
     import { createEventDispatcher, onMount } from "svelte";
     import { getTypeColor } from "../utils/helper";
     import { getPokemonById } from "../utils/pokeService";
+    import RadarChart from "./RadarChart.svelte";
+
     // import { getpokemon } from "../ex-utils/pokemonService";
 
     // Props
@@ -40,6 +42,19 @@
 
     function formatWeight(weight) {
         return `${(weight / 10).toFixed(1)} kg`;
+    }
+
+    function getStatColor(stat) {
+        const colors = {
+            hp: "#FF5959",
+            attack: "#F5AC78",
+            defense: "#FAE078",
+            "special-attack": "#9DB7F5",
+            "special-defense": "#A7DB8D",
+            speed: "#FA92B2",
+        };
+
+        return colors[stat];
     }
 
     // Lifecycle - check orientation when component mounts and on resize
@@ -114,7 +129,7 @@
                         </div>
                     {:else if activeTab === "Stats"}
                         <div class="stats-tab">
-                            {#each pokemon.stat as stat}
+                            <!-- {#each pokemon.stat as stat}
                                 <div class="stat-row">
                                     <span class="stat-name"
                                         >{stat.name.replace("-", " ")}</span
@@ -126,26 +141,25 @@
                                             style="width: {Math.min(
                                                 100,
                                                 (+stat.value / 255) * 100,
-                                            )}%"
+                                            )}%; background-color: {getStatColor(stat.name)}"
                                         ></div>
                                     </div>
                                 </div>
-                            {/each}
+                            {/each} -->
+                            <RadarChart
+                                data={pokemon.stat}
+                                maxValue=255
+                                size=300
+                            />
                         </div>
                     {:else if activeTab === "Moves"}
                         <div class="moves-tab">
                             <div class="moves-list">
-                                {#each pokemon.moves.slice(0, 20) as move}
+                                {#each pokemon.moves as move}
                                     <span class="move-item"
                                         >{move.replace("-", " ")}</span
                                     >
                                 {/each}
-                                {#if pokemon.moves.length > 20}
-                                    <span class="more-moves"
-                                        >+ {pokemon.moves.length - 20} more
-                                        moves</span
-                                    >
-                                {/if}
                             </div>
                         </div>
                     {/if}

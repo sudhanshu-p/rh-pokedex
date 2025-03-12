@@ -77,7 +77,7 @@ export async function initializePokemon(limit = 20) {
                 id: data.id,
                 name: data.name,
                 type: data.types.map((t: any) => t.type.name),
-                image: data.sprites.other.dream_world.front_default,
+                image: data.sprites.other.dream_world.front_default || data.sprites.other["official-artwork"].front_default,
                 height: data.height,
                 weight: data.weight,
                 abilities: data.abilities.map((ability: { ability: { name: any; }; }) => ability.ability.name),
@@ -116,7 +116,7 @@ export async function loadMorePokemon(limit = 20, offset = 20): Promise<Pokemon[
             id: data.id,
             name: data.name,
             type: data.types.map((t: any) => t.type.name),
-            image: data.sprites.other.dream_world.front_default,
+            image: data.sprites.other.dream_world.front_default || data.sprites.other["official-artwork"].front_default,
             height: data.height,
             weight: data.weight,
             abilities: data.abilities.map((ability: { ability: { name: any; }; }) => ability.ability.name),
@@ -132,6 +132,7 @@ export async function loadMorePokemon(limit = 20, offset = 20): Promise<Pokemon[
     }));
     return ids.map(id => pokemonCache[id])
 }
+
 
 export function getAllPokemon(): Pokemon[] | null {
     return Object.values(pokemonCache);
@@ -160,7 +161,7 @@ export async function searchPokemonByName(partialName: string, limit = 20, offse
             id: data.id,
             name: data.name,
             type: data.types.map((t: any) => t.type.name),
-            image: data.sprites.other.dream_world.front_default,
+            image: data.sprites.other.dream_world.front_default || data.sprites.other["official-artwork"].front_default,
             height: data.height,
             weight: data.weight,
             abilities: data.abilities.map((ability: { ability: { name: any; }; }) => ability.ability.name),
@@ -193,7 +194,7 @@ export async function getPokemonByType(type: string, limit = 20, offset = 0): Pr
             id: data.id,
             name: data.name,
             type: data.types.map((t: any) => t.type.name),
-            image: data.sprites.other.dream_world.front_default,
+            image: data.sprites.other.dream_world.front_default || data.sprites.other["official-artwork"].front_default,
             height: data.height,
             weight: data.weight,
             abilities: data.abilities.map((ability: { ability: { name: any; }; }) => ability.ability.name),
