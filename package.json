@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.4.3"
+    "@astrojs/svelte": "^7.0.6",
+    "astro": "^5.4.3",
+    "axios": "^1.8.3",
+    "svelte": "^5.23.0",
+    "typescript": "^5.8.2"
   }
 }
