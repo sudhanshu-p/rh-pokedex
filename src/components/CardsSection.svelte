@@ -125,7 +125,10 @@
     .no-results {
         text-align: center;
         padding: 2rem;
-        background: white;
+        grid-column: 1/-1;
+        background: var(--secondary-background);
+        color: var(--secondary-text);
+        width: 100%;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
